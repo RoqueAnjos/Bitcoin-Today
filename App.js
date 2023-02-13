@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {StatusBar, StyleSheet, SafeAreaView, Platform } from 'react-native';
+import CurrentPrice from './src/components/CurrentPrice';
+import HistoryGrahic from './src/components/HistoryGraphic';
+import QuotationsList from './src/components/QuotationsList';
+import QuotationsItems from './src/components/QuotationsList/QuotationsItems';
+
+function addZero(number){
+  if(number<=9){
+    return "0" + number;
+  }else{
+    return number;
+  }
+}
+
+function url(qtdDays){
+
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar 
+      backgroundColor="#f50d41"
+      barStyle="dark-content"/>
+
+      <CurrentPrice/>
+      <HistoryGrahic/>
+      <QuotationsList/>
+      <QuotationsItems/>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Platform.OS === 'android' ? 40 : 0
   },
 });
